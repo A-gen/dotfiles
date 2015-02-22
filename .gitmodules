@@ -1,0 +1,6 @@
+[submodule "dotdirs/dot.zsh/prezto"]
+	path = dotdirs/dot.zsh/prezto
+	url = https://github.com/A-gen/prezto.git
+[submodule "dotdirs/dot.vim/bundle/neobundle.vim"]
+	path = dotdirs/dot.vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim.git

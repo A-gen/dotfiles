@@ -1,0 +1,2 @@
+dotdirs/dot.vim/bundle/*
+!dotdirs/dot.vim/bundle/neobundle.vim
