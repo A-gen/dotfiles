@@ -22,7 +22,7 @@ echo "vim and some"
 symlink $DOTROOT/dotdirs/dot.vim ${HOME}/.vim
 symlink $DOTROOT/dot.vimrc       ${HOME}/.vimrc
 
-## zsh
+# zsh
 echo
 echo "zsh and some"
 symlink $DOTROOT/dotdirs/dot.zsh ${HOME}/.zsh
@@ -30,8 +30,13 @@ symlink $HOME/.zsh/prezto        ${HOME}/.zprezto
 symlink $DOTROOT/dot.zlogin      ${HOME}/.zlogin
 symlink $DOTROOT/dot.zlogout     ${HOME}/.zlogout
 symlink $DOTROOT/dot.zpreztorc   ${HOME}/.zpreztorc
-symlink $DOTROOT/dot.zprofile    ${HOME}/.zshenv
+symlink $DOTROOT/dot.zprofile    ${HOME}/.zprofile
 symlink $DOTROOT/dot.zshenv      ${HOME}/.zshenv
 symlink $DOTROOT/dot.zshrc       ${HOME}/.zshrc
+
+# Others
+echo
+echo "others"
+symlink $DOTROOT/dot.gitconfig   ${HOME}/.gitconfig
 
 echo "Deploy finished"
