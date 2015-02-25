@@ -10,8 +10,9 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-# rbenv
+# *env
 source "$HOME/.zsh/custom/rbenv"
+source "$HOME/.zsh/custom/phpenv"
 
 # Completions
 
