@@ -12,3 +12,6 @@ fi
 
 # rbenv
 source "$HOME/.zsh/custom/rbenv"
+
+# Completions
+
