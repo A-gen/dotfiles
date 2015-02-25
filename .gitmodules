@@ -4,3 +4,6 @@
 [submodule "dotdirs/dot.vim/bundle/neobundle.vim"]
 	path = dotdirs/dot.vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim.git
+[submodule "dotdirs/dot.tmux/tmux-powerline"]
+	path = dotdirs/dot.tmux/tmux-powerline
+	url = git://github.com/erikw/tmux-powerline.git

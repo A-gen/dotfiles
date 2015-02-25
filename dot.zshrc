@@ -21,3 +21,10 @@ if type peco >/dev/null 2>&1; then
   alias -g R='`git remote | peco --prompt "GIT REMOTE>" | head -n 1`'
   alias -g H='`curl -sL https://api.github.com/users/A-gen/repos | jq -r ".[].full_name" | peco --prompt "GITHUB REPOS>" | head -n 1`'
 fi
+#  tmux
+alias t='tmux'
+alias ta='tmux attach'
+
+# Other settings
+#  tmux
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'

@@ -62,6 +62,9 @@ set smarttab
 set showtabline=2
 set laststatus=2
 
+set t_ut=
+set t_Co=256
+
 set cursorline
 autocmd VimEnter,ColorScheme * : highlight CursorLine cterm=underline ctermbg=234
 

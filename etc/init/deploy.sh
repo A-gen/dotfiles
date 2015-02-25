@@ -34,6 +34,12 @@ symlink $DOTROOT/dot.zprofile    ${HOME}/.zprofile
 symlink $DOTROOT/dot.zshenv      ${HOME}/.zshenv
 symlink $DOTROOT/dot.zshrc       ${HOME}/.zshrc
 
+# tmux
+echo "tmux and some"
+symlink $DOTROOT/dotdirs/dot.tmux     ${HOME}/.tmux
+symlink $DOTROOT/dot.tmux.conf        ${HOME}/.tmux.conf
+symlink $DOTROOT/dot.tmux-powerlinerc ${HOME}/.tmux-powerlinerc
+
 # Others
 echo
 echo "others"
