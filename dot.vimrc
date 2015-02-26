@@ -72,6 +72,10 @@ syntax on
 colorscheme hybrid
 set background=dark
 " }}}
+" Languages{{{
+"  php
+au BufNewFile,BufRead *.php set tabstop=4 shiftwidth=4
+" }}}
 " Plugin settings{{{
 "  neocomplete{{{
 if neobundle#is_installed('neocomplete')
