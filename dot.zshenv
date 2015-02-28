@@ -1,4 +1,4 @@
-#
+
 # Defines environment variables.
 #
 # Authors:
@@ -13,6 +13,3 @@ fi
 # *env
 source "$HOME/.zsh/custom/rbenv"
 source "$HOME/.zsh/custom/phpenv"
-
-# Completions
-
