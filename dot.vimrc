@@ -34,6 +34,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'kchmck/vim-coffee-script'
 " }}}
 "  Post-process{{{
 call neobundle#end()
@@ -75,6 +76,9 @@ set background=dark
 " Languages{{{
 "  php
 au BufNewFile,BufRead *.php set tabstop=4 shiftwidth=4
+"  CoffeeAcript
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 " }}}
 " Plugin settings{{{
 "  neocomplete{{{
