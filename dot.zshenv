@@ -13,3 +13,5 @@ fi
 # *env
 source "$HOME/.zsh/custom/rbenv"
 source "$HOME/.zsh/custom/phpenv"
+source "$HOME/.zsh/custom/nodebrew"
+source "$HOME/.zsh/custom/composer"

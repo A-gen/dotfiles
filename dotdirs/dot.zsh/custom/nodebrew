@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+path=(
+  $HOME/.nodebrew/current/bin(N-/)
+  $path
+)

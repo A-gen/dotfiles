@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+path=(
+  $HOME/.composer/vendor/bin(N-/)
+  $path
+)
+
