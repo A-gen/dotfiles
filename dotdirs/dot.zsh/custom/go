@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+export GOROOT=$HOME/usr/local/go
+export GOPATH=$HOME
+case ${OSTYPE} in
+  darwin*)
+    export GOOS=darwin
+    ;;
+  linux*)
+    export GOOS=linux
+esac
+case $(uname -m) in
+  i686*)
+    export GOARCH=386
+    ;;
+  x86_64*)
+    export GOARCH=amd64
+    ;;
+esac
+export PATH=$PATH:$GOROOT/bin
