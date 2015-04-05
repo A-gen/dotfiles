@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-export GOROOT=$HOME/usr/local/go
 export GOPATH=$HOME
 case ${OSTYPE} in
   darwin*)
@@ -17,4 +16,4 @@ case $(uname -m) in
     export GOARCH=amd64
     ;;
 esac
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
