@@ -35,6 +35,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'elixir-lang/vim-elixir'
 " }}}
 "  Post-process{{{
 call neobundle#end()
