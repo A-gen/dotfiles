@@ -1,0 +1,22 @@
+[ghq]
+  root = ~/rps/src
+
+[user]
+  name = A-gen
+  email = agen@seven-words.info
+
+[push]
+  default = simple
+
+[alias]
+  ci = commit -v
+  co = checkout
+
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[github]
+  user = A-gen
+
+[bitbucket]
+  user = agen
