@@ -11,9 +11,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'junegunn/vim-plug'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+
 Plug 'w0ng/vim-hybrid'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
@@ -21,7 +24,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet-snippets' | Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/unite.vim' | Plug 'Shougo/vimfiler.vim'
+
+Plug 'neomake/neomake'
+
+Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 
 let s:plugs = {'plugs': get(g:, 'plugs', {})}
 function! s:plugs.is_installed(name)
@@ -56,6 +63,11 @@ set cursorline
 
 set t_ut=
 
+" Languages
+"  Elixir
+imap >> \|><Space>
+
+" Plugins
 if s:plugs.is_installed('vim-hybrid')
   set background=dark
   colorscheme hybrid
@@ -80,47 +92,6 @@ if s:plugs.is_installed('neocomplete.vim')
   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
   inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-endif
-
-if s:plugs.is_installed('vimfiler.vim')
-  nnoremap <silent> <F2> :VimFilerTree<CR>
-  let g:vimfiler_as_default_explorer = 1
-
-  call vimfiler#custom#profile('default', 'context', {
-        \ 'safe' : 0,
-        \ 'auto_expand' : 1,
-        \ 'parent' : 0,
-        \ })
-
-  function! VimFilerTree(...)
-    let l:h = expand(a:0 > 0 ? a:1 : '%:p:h')
-    let l:path = isdirectory(l:h) ? l:h : ''
-    exec ':VimFiler -buffer-name=explorer -split -simple -winwidth=45 -toggle -no-quit ' . l:path
-    wincmd t
-    setl winfixwidth
-  endfunction
-  command! VimFilerTree call VimFilerTree(<f-args>)
-
-  autocmd! FileType vimfiler call s:my_vimfiler_settings()
-  function! s:my_vimfiler_settings()
-    nmap     <buffer><expr><CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-    nnoremap <buffer>s          :call vimfiler#mappings#do_action(b:vimfiler, 'my_split')<CR>
-    nnoremap <buffer>v          :call vimfiler#mappings#do_action(b:vimfiler, 'my_vsplit')<CR>
-  endfunction
-
-  let my_action = {'is_selectable' : 1}
-  function! my_action.func(candidates)
-    wincmd p
-    exec 'split '. a:candidates[0].action__path
-  endfunction
-  call unite#custom_action('file', 'my_split', my_action)
-
-  let my_action = {'is_selectable' : 1}
-  function! my_action.func(candidates)
-    wincmd p
-    exec 'vsplit '. a:candidates[0].action__path
-  endfunction
-  call unite#custom_action('file', 'my_vsplit', my_action)
 endif
 
 if s:plugs.is_installed('vim-gitgutter')
@@ -194,4 +165,48 @@ if s:plugs.is_installed('lightline.vim')
     endfor
     return join(ret, ' ')
   endfunction
+endif
+
+if s:plugs.is_installed('ctrlp.vim')
+  let g:ctrlp_show_hidden = 1
+  if executable('ag')
+    let g:ctrlp_use_caching=0
+    let g:ctrlp_max_files = 15000
+    let g:ctrlp_user_command='ag %s --hidden -i --nocolor --nogroup -g "" --ignore .git'
+  endif
+endif
+
+if s:plugs.is_installed('neomake')
+  autocmd! BufWritePost * Neomake
+  let g:neomake_error_sign = {'text': '>>', 'texthl': 'Error'}
+  let g:neomake_warning_sign = {'text': '>>',  'texthl': 'Todo'}
+
+  " elixir
+  let g:neomake_elixir_enabled_makers = ['mycredo']
+  function NeomakeCredoErrorType(entry)
+    if a:entry.type ==# 'F'      " Refactoring opportunities
+      let type = 'W'
+    elseif a:entry.type ==# 'D'  " Software design suggestions
+      let type = 'I'
+    elseif a:entry.type ==# 'W'  " Warnings
+      let type = 'W'
+    elseif a:entry.type ==# 'R'  " Readability suggestions
+      let type = 'I'
+    elseif a:entry.type ==# 'C'  " Convention violation
+      let type = 'W'
+    else
+      let type = 'M'           " Everything else is a message
+    endif
+    let a:entry.type = type
+  endfunction
+  let g:neomake_elixir_mycredo_maker = {
+        \ 'exe': 'mix',
+        \ 'args': ['credo', 'list', '--strict', '%:p', '--format=oneline'],
+        \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
+        \ 'postprocess': function('NeomakeCredoErrorType')
+        \ }
+endif
+
+if s:plugs.is_installed('nerdtree')
+  nnoremap <silent><F2> :NERDTreeToggle<CR>
 endif

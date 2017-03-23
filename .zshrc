@@ -8,6 +8,7 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug "themes/robbyrussell", from:oh-my-zsh
+zplug "plugins/asdf", from:oh-my-zsh
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
